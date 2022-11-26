@@ -1,0 +1,56 @@
+#mainmenu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  height: 26px;
+}
+#mainmenu ul li {
+  display: block;
+  height: 26px;
+  float: left;
+  overflow: visible;
+}
+#mainmenu ul li:hover > ul {
+  display: block;
+}
+#mainmenu ul li a,
+#mainmenu ul li span {
+  float: left;
+  display: block;
+}
+#mainmenu ul li span:hover {
+  cursor: pointer;
+}
+#mainmenu ul li span {
+  color: #ffffff;
+  background-color: transparent;
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 5px 8px;
+}
+
+#mainmenu ul li ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  background: #589fc8;
+  color: #fff;
+  height: auto;
+  width: auto;
+}
+#mainmenu ul li ul li a,
+#mainmenu ul li ul li a {
+  color: #fff;
+  padding: 4px 14px;
+  display: block;
+  width: 120px;
+}
+#mainmenu ul li ul li.active a,
+#mainmenu ul li ul li a:hover {
+  color: #589fc8;
+}
+#mainmenu ul li ul li {
+  clear: left;
+}
