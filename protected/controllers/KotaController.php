@@ -28,8 +28,12 @@ class KotaController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','create','update','admin','delete','autocomplete'),
-				'roles'=>array('Kota'),
+				'actions'=>array('index','view','create','admin','autocomplete'),
+				'roles'=>array('user'),
+			),
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('update','delete'),
+				'roles'=>array('superadmin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),

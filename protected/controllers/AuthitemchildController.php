@@ -55,7 +55,7 @@ class AuthitemchildController extends Controller
 	public function actionCreate()
 	{
 		$model=new Authitemchild;
-
+		$authItemModel = CHtml::listData(Authitem::model()->findAll(),'name','name');
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -69,6 +69,7 @@ class AuthitemchildController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
+			'authItemModel'=>$authItemModel,
 		));
 	}
 

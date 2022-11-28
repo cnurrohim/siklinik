@@ -21,13 +21,15 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'itemname'); ?>
-		<?php echo $form->textField($model,'itemname',array('size'=>60,'maxlength'=>64)); ?>
+		<?php echo $form->dropDownList($model, 'itemname', $authItemModel, array("prompt"=> "--All--" )); ?>
+		
 		<?php echo $form->error($model,'itemname'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'userid'); ?>
-		<?php echo $form->textField($model,'userid',array('size'=>60,'maxlength'=>64)); ?>
+		<?php echo $form->dropDownList($model, 'userid', $userModel, array("prompt"=> "--All--" )); ?>
+		
 		<?php echo $form->error($model,'userid'); ?>
 	</div>
 

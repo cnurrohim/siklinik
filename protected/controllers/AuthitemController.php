@@ -56,20 +56,19 @@ class AuthitemController extends Controller
 	public function actionCreate()
 	{
 		$model=new Authitem;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$rolesModel = CHtml::ListData(Roles::model()->findAll(),'description','description');
 
 		if(isset($_POST['Authitem']))
 		{
 			$model->attributes=$_POST['Authitem'];
 			if($model->save()){
-				//$this->redirect(array('view','id'=>$model->name));
+				$this->redirect(array('view','id'=>$model->name));
 			}
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+			'rolesModel'=>$rolesModel,
 		));
 	}
 

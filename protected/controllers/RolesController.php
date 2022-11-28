@@ -62,6 +62,8 @@ class RolesController extends Controller
 		if(isset($_POST['Roles']))
 		{
 			$model->attributes=$_POST['Roles'];
+			$model->DateCreated = date_create()->format('y-m-d H:i:s');
+			$model->LastUpdate = date_create()->format('y-m-d H:i:s');
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}

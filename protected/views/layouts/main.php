@@ -34,24 +34,24 @@
 				array(
 					'label'=>'master',
 					'items' => array(
-						array('label'=>'Kota', 'url'=>array('/kota'), 'visible'=>Yii::app()->user->checkAccess('Kota')),
-						array('label'=>'Dokter', 'url'=>array('/dokter'), 'visible'=>Yii::app()->user->checkAccess('Dokter')),
-						array('label'=>'Pasien', 'url'=>array('/pasien'), 'visible'=>Yii::app()->user->checkAccess('Pasien')),
-						array('label'=>'Obat', 'url'=>array('/obat'), 'visible'=>Yii::app()->user->checkAccess('Obat')),
+						array('label'=>'Kota', 'url'=>array('/kota'), 'visible'=>Yii::app()->user->checkAccess('user')),
+						array('label'=>'Dokter', 'url'=>array('/dokter'), 'visible'=>Yii::app()->user->checkAccess('superadmin')),
+						array('label'=>'Pasien', 'url'=>array('/pasien'), 'visible'=>Yii::app()->user->checkAccess('user')),
+						array('label'=>'Obat', 'url'=>array('/obat'), 'visible'=>Yii::app()->user->checkAccess('superadmin')),
 					),
 				),
 				array(
 					'label'=>'pembayaran',
 					'items'=>array(
-						array('label'=>'Bayar', 'url'=>array('/bayar'), 'visible'=>Yii::app()->user->checkAccess('Bayar')),
+						array('label'=>'Bayar', 'url'=>array('/bayar'), 'visible'=>Yii::app()->user->checkAccess('user')),
 					),
 				),
 				array(
 					'label'=>'tindakan',
 					'items'=>array(
-						array('label'=>'Rekam Medik', 'url'=>array('/rekammedik'), 'visible'=>Yii::app()->user->checkAccess('RekamMedis')),
-						array('label'=>'Resep', 'url'=>array('/resep'), 'visible'=>Yii::app()->user->checkAccess('RekamMedis')),
-						array('label'=>'Detil Resep', 'url'=>array('/detilresep'), 'visible'=>Yii::app()->user->checkAccess('RekamMedis')),
+						array('label'=>'Rekam Medik', 'url'=>array('/rekammedik'), 'visible'=>Yii::app()->user->checkAccess('user')),
+						//array('label'=>'Resep', 'url'=>array('/resep'), 'visible'=>Yii::app()->user->checkAccess('user')),
+						//array('label'=>'Detil Resep', 'url'=>array('/detilresep'), 'visible'=>Yii::app()->user->checkAccess('user')),
 					),
 				),
 				array(

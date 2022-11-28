@@ -28,8 +28,12 @@ class RekamMedikController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','create','update','admin','delete'),
-				'roles'=>array('RekamMedis'),
+				'actions'=>array('index','view','create','admin'),
+				'roles'=>array('user'),
+			),
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('update','delete'),
+				'roles'=>array('superadmin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -69,9 +73,6 @@ class RekamMedikController extends Controller
 		$model=new RekamMedik;
 		$resepModel = new Resep;
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
 		if(isset($_POST['RekamMedik']))
 		{
 			$model->attributes=$_POST['RekamMedik'];
@@ -81,7 +82,7 @@ class RekamMedikController extends Controller
 				$resepModel->tanggal = date('Y-m-d');
 				$resepModel->save();
 
-				$this->redirect(array('resep/view','id'=>$resepModel->id));
+				$this->redirect(array('rekammedik/view','id'=>$model->id));
 			}
 		}
 

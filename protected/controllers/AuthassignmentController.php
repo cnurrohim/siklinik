@@ -55,6 +55,8 @@ class AuthassignmentController extends Controller
 	public function actionCreate()
 	{
 		$model=new Authassignment;
+		$authItemModel = CHtml::listData(Authitem::model()->findAll(), 'name', 'name');
+		$userModel = CHtml::listData(Users::model()->findAll(), 'id', 'username');
 
 		if(isset($_POST['ajax']) && $_POST['ajax']==='client-account-create-form')
 	    {
@@ -74,6 +76,8 @@ class AuthassignmentController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
+			'userModel'=>$userModel,
+			'authItemModel'=>$authItemModel
 		));
 	}
 

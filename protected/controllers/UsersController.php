@@ -65,11 +65,10 @@ class UsersController extends Controller
 			$model->password = crypt($model->password,'salt');
 			$model->DateCreated = date_create()->format('y-m-d H:i:s');
 			if($model->save()){
-				$authAssignment = new Authassignment;
-				$authAssignment->userid = $model->id;
-				$authAssignment->itemname = Roles::model()->findByPk($model->roles_id)->description;
-				$authAssignment->save();
-
+				//$authAssignment = new Authassignment;
+				//$authAssignment->userid = $model->id;
+				//$authAssignment->itemname = Roles::model()->findByPk($model->roles_id)->description;
+				//$authAssignment->save();
 
 				// $auth = Yii::app()->authManager;
 				// $auth->assign(Roles::model()->findByPk($model->roles_id)->description,$model->id);

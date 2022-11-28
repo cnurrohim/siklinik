@@ -56,7 +56,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'jenis_kelamin'); ?>
-		<?php echo $form->textField($model,'jenis_kelamin',array('size'=>1,'maxlength'=>1)); ?>
+		<?php echo $form->dropDownList($model, 'jenis_kelamin', array("L"=>"Pria","P"=>"Wanita"), array("prompt"=> "--All--" )); ?>
 		<?php echo $form->error($model,'jenis_kelamin'); ?>
 	</div>
 
