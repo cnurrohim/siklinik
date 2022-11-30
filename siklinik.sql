@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2022 at 10:15 AM
+-- Generation Time: Nov 30, 2022 at 05:47 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `authassignment` (
   `itemname` varchar(64) NOT NULL,
-  `userid` varchar(64) NOT NULL,
+  `userid` int(11) NOT NULL,
   `bizrule` text DEFAULT NULL,
   `data` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -39,9 +39,8 @@ CREATE TABLE `authassignment` (
 --
 
 INSERT INTO `authassignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
-('IsiDataMaster', '15', NULL, NULL),
-('IsiDataMaster', '6', '', 'N;'),
-('superadmin', '6', '', 'N;');
+('superadmin', 6, '', 'N;'),
+('user', 16, '', 'N;');
 
 -- --------------------------------------------------------
 
@@ -62,20 +61,8 @@ CREATE TABLE `authitem` (
 --
 
 INSERT INTO `authitem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
-('AsistenDokter', 2, 'rekam data tindakan', '', 'N;'),
-('Bayar', 0, 'manage data pembayaran', '', 'N;'),
-('Dokter', 0, 'manage data dokter', '', 'N;'),
-('FrontDesk', 2, 'input data', '', 'N;'),
-('isiDataMaster', 1, 'isi data master', '', 'N;'),
-('Kasir', 2, 'kasir', '', 'N;'),
-('Kota', 0, 'manage data wilayah', '', 'N;'),
-('Laporan', 1, '', '', 'N;'),
-('Obat', 0, 'manage data obat', '', 'N;'),
-('pasien', 0, 'manage data pasien', '', 'N;'),
-('Pembayaran', 1, 'pembayaran', '', 'N;'),
-('RekamMedis', 0, 'manage data rekam medis', '', 'N;'),
 ('superadmin', 2, '', NULL, 'N;'),
-('Tindakan', 1, 'tindakan', '', 'N;');
+('user', 1, 'user create view', '', 'N;');
 
 -- --------------------------------------------------------
 
@@ -93,19 +80,7 @@ CREATE TABLE `authitemchild` (
 --
 
 INSERT INTO `authitemchild` (`parent`, `child`) VALUES
-('AsistenDokter', 'Tindakan'),
-('FrontDesk', 'isiDataMaster'),
-('isiDataMaster', 'Dokter'),
-('isiDataMaster', 'Kota'),
-('isiDataMaster', 'Obat'),
-('isiDataMaster', 'Pasien'),
-('Kasir', 'Pembayaran'),
-('Pembayaran', 'Bayar'),
-('superadmin', 'AsistenDokter'),
-('superadmin', 'FrontDesk'),
-('superadmin', 'Kasir'),
-('superadmin', 'Laporan'),
-('Tindakan', 'RekamMedis');
+('superadmin', 'user');
 
 -- --------------------------------------------------------
 
@@ -130,7 +105,8 @@ CREATE TABLE `bayar` (
 INSERT INTO `bayar` (`id`, `resep_id`, `biaya_obat`, `biaya_jasa`, `bayar`, `tanggal`, `user_id`) VALUES
 (1, 1, '46000.00', '10000.00', '56000.00', '2022-11-26', 6),
 (3, 3, '15000.00', '0.00', '15000.00', '2022-11-26', 6),
-(4, 4, '90600.00', '50000.00', '20000.00', '2022-11-26', 6);
+(4, 4, '90600.00', '50000.00', '20000.00', '2022-11-26', 6),
+(5, 9, '84600.00', '0.00', '84600.00', '2022-11-28', 16);
 
 -- --------------------------------------------------------
 
@@ -158,7 +134,8 @@ INSERT INTO `detil_resep` (`id`, `obat_id`, `resep_id`, `jumlah`, `harga`) VALUE
 (11, 2, 1, 0, '5000.00'),
 (12, 2, 3, 3, '5000.00'),
 (13, 7, 4, 2, '42300.00'),
-(14, 8, 4, 2, '3000.00');
+(14, 8, 4, 2, '3000.00'),
+(15, 7, 9, 2, '42300.00');
 
 -- --------------------------------------------------------
 
@@ -188,7 +165,8 @@ INSERT INTO `dokter` (`id`, `nama`, `hp`, `tgllahir`, `alamat`, `jenis_kelamin`,
 (6, 'r. ANDRIARTO NUGROHO, MKK', '+6281553571490', '1990-11-01', 'surabaya', 'L', 16),
 (7, 'dr. ALFIAN HUSIN, MARS', '+6281553571490', '1989-11-01', 'surabaya', 'L', 11),
 (8, 'dr. WAGNER TULUS', '+6281553571490', '1985-11-01', 'surabaya', 'L', 9),
-(9, 'Dr. Sulaiman', '+62812378912', '1980-11-09', 'Jl. Merdeka Barat utara', 'L', 17);
+(9, 'Dr. Sulaiman', '+62812378912', '1980-11-09', 'Jl. Merdeka Barat utara', 'L', 17),
+(10, 'Chris Hemswort', '+6281553571490', '1992-11-01', 'surabaya', 'L', 2);
 
 -- --------------------------------------------------------
 
@@ -221,7 +199,8 @@ INSERT INTO `kota` (`id`, `nama`) VALUES
 (14, 'Solo'),
 (15, 'Mojokerto'),
 (16, 'Bojonegoro'),
-(17, 'Tegal Sari');
+(17, 'Tegal Sari'),
+(18, 'Banyuwangi');
 
 -- --------------------------------------------------------
 
@@ -285,7 +264,9 @@ INSERT INTO `pasien` (`id`, `nama`, `hp`, `tgllahir`, `alamat`, `jenis_kelamin`,
 (10, 'SUSANTI EFFENDI', '0912312', '2000-08-15', 'jl. perkasa', 'P', 14),
 (11, ' ABDUL GAMAL', '0912312', '2002-08-15', 'jl. perkasa', 'L', 15),
 (12, 'EBIET YUDI SANTOKO', '0912312', '1981-11-01', 'jl. perkasa', 'L', 3),
-(13, 'Ngatimin', '+0219112312', '1991-11-10', 'jl. perkasa', 'P', 5);
+(13, 'Ngatimin', '+0219112312', '1991-11-10', 'jl. perkasa', 'P', 5),
+(14, 'James Lake Jr.', '0912312', '1994-08-15', 'jl. perkasa', 'P', 5),
+(15, 'Ngatiyem', '+0219112312', '1980-11-01', 'Wonorekjo', 'P', 18);
 
 -- --------------------------------------------------------
 
@@ -311,7 +292,12 @@ CREATE TABLE `rekam_medik` (
 INSERT INTO `rekam_medik` (`id`, `keluhan`, `diagnosis`, `dokter_id`, `pasien_id`, `user_id`, `tanggal_periksa`, `terapi`) VALUES
 (5, 'panas', 'mma', 3, 1, 6, '2022-11-29', 'minum'),
 (7, 'pusing vertigo', 'darah rendah', 2, 3, 6, '2022-11-15', 'puasa'),
-(8, 'Hidung Tersumbat', 'Flu', 8, 13, 6, '2022-11-09', 'Obat Flu');
+(8, 'Hidung Tersumbat', 'Flu', 8, 13, 6, '2022-11-09', 'Obat Flu'),
+(9, 'Sakit Perut', 'Maag', 8, 15, 16, '2022-11-29', 'Obat maag'),
+(10, 'pusing mual', 'lelah', 4, 15, 16, '2022-11-28', 'Istirahat'),
+(11, 'Mual', 'mual', 4, 15, 16, '2022-11-28', 'obat'),
+(12, 'Muntaber', 'Demam Berdarah', 7, 8, 16, '2022-11-28', 'Opename'),
+(13, 'Pingsan', 'Darah Tinggi', 5, 13, 16, '2022-11-28', 'Obat');
 
 -- --------------------------------------------------------
 
@@ -332,7 +318,12 @@ CREATE TABLE `resep` (
 INSERT INTO `resep` (`id`, `rekammedik_id`, `tanggal`) VALUES
 (1, 5, '2022-11-25'),
 (3, 7, '2022-11-26'),
-(4, 8, '2022-11-26');
+(4, 8, '2022-11-26'),
+(5, 9, '2022-11-28'),
+(6, 10, '2022-11-28'),
+(7, 11, '2022-11-28'),
+(8, 12, '2022-11-28'),
+(9, 13, '2022-11-28');
 
 -- --------------------------------------------------------
 
@@ -353,8 +344,7 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id`, `description`, `DateCreated`, `LastUpdate`) VALUES
 (1, 'admin', '2022-11-24 16:05:02', '2022-11-24 09:05:07'),
-(2, 'user', '2022-11-24 16:05:21', '2022-11-24 09:05:24'),
-(3, 'IsiDataMaster', '2022-01-01 00:00:00', '2021-12-31 17:00:00');
+(2, 'user', '2022-11-24 16:05:21', '2022-11-24 09:05:24');
 
 -- --------------------------------------------------------
 
@@ -396,7 +386,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `DateCreated`, `LastUpdate`, `roles_id`) VALUES
 (6, 'admin', 'sa1aY64JOY94w', '2022-11-24 14:02:08', '2022-11-24 13:02:08', 1),
-(15, 'userbaru', 'sa1aY64JOY94w', '2022-11-26 10:07:21', '2022-11-26 09:07:21', 3);
+(16, 'frank', 'sau3rH36/14w2', '2022-11-28 04:04:46', '2022-11-28 03:04:46', 2),
+(18, 'dakota', 'sa.dlQ.sAJTpY', '2022-11-28 04:10:29', '2022-11-28 03:10:29', 2),
+(19, 'marui', 'saNy9Q9tksbUg', '2022-11-28 04:12:58', '2022-11-28 03:12:58', 2);
 
 --
 -- Indexes for dumped tables
@@ -406,7 +398,8 @@ INSERT INTO `users` (`id`, `username`, `password`, `DateCreated`, `LastUpdate`, 
 -- Indexes for table `authassignment`
 --
 ALTER TABLE `authassignment`
-  ADD PRIMARY KEY (`itemname`,`userid`);
+  ADD PRIMARY KEY (`itemname`,`userid`),
+  ADD KEY `authassignment_user_fk` (`userid`);
 
 --
 -- Indexes for table `authitem`
@@ -508,25 +501,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bayar`
 --
 ALTER TABLE `bayar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `detil_resep`
 --
 ALTER TABLE `detil_resep`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `dokter`
 --
 ALTER TABLE `dokter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `kota`
 --
 ALTER TABLE `kota`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `obat`
@@ -538,31 +531,31 @@ ALTER TABLE `obat`
 -- AUTO_INCREMENT for table `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `rekam_medik`
 --
 ALTER TABLE `rekam_medik`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `resep`
 --
 ALTER TABLE `resep`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
@@ -572,7 +565,8 @@ ALTER TABLE `users`
 -- Constraints for table `authassignment`
 --
 ALTER TABLE `authassignment`
-  ADD CONSTRAINT `authassignment_ibfk_1` FOREIGN KEY (`itemname`) REFERENCES `authitem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `authassignment_ibfk_1` FOREIGN KEY (`itemname`) REFERENCES `authitem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `authassignment_user_fk` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `authitemchild`

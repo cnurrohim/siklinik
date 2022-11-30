@@ -48,6 +48,7 @@ class Authassignment extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'itemname0' => array(self::BELONGS_TO, 'Authitem', 'itemname'),
+			'users' => array(self::BELONGS_TO, 'users', 'userid'),
 		);
 	}
 

@@ -36,7 +36,7 @@ class TotalRow extends CGridColumn {
 
     public function renderDataCellContent($row, $data) {
         $this->_total = $data->{$this->jumlah} * $data->{$this->harga};
-
-        echo $this->_total;
+        
+        echo number_format($this->_total, 0, ".",",");
     }
 }

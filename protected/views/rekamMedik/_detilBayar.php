@@ -5,10 +5,22 @@
 			'pagination'=>array('pageSize'=>10)
 		)),
 	'columns'=>array(
-		'biaya_obat',
-		'biaya_jasa',
-		'bayar',
-		'tanggal',
+		array(
+			'name'=>'biaya obat',
+			'value'=>'number_format($data->biaya_obat,0,".",",")',
+		),
+		array(
+			'name'=>'biaya jasa',
+			'value'=>'number_format($data->biaya_jasa,0,".",",")',
+		),
+		array(
+			'name'=>'bayar',
+			'value'=>'number_format($data->bayar,0,".",",")',
+		),
+		array(
+			'name'=>'tanggal',
+			'value'=>'date("d-m-Y",strtotime($data->tanggal))',
+		),
 		array(
 			'class'=>'CButtonColumn',
 			'template'=>'{delete}{cetak}',

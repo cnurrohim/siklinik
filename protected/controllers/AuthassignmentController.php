@@ -148,7 +148,10 @@ class AuthassignmentController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Authassignment');
+		$criteria=new CDbCriteria;
+		$criteria->with=array('users');
+		$dataProvider=new CActiveDataProvider('Authassignment',array('criteria'=>$criteria));
+
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

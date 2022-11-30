@@ -50,6 +50,7 @@ class Users extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'roles' => array(self::BELONGS_TO, 'Roles', 'roles_id'),
+			//'authassignment' => array(self::HAS_ONE, 'users', 'userid'),
 		);
 	}
 

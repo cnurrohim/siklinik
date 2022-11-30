@@ -37,17 +37,6 @@
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'bizrule'); ?>
-		<?php echo $form->textArea($model,'bizrule',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'bizrule'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'data'); ?>
-		<?php echo $form->textArea($model,'data',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'data'); ?>
-	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

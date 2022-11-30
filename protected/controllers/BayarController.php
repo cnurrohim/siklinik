@@ -121,7 +121,10 @@ class BayarController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Bayar');
+		$criteria=new CDbCriteria;
+		$criteria->with=array('user');
+		$dataProvider=new CActiveDataProvider('Bayar',array('criteria'=>$criteria));
+
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

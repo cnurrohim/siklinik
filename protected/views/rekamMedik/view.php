@@ -24,9 +24,9 @@ $this->menu=array(
 		'id',
 		'keluhan',
 		'diagnosis',
-		'dokter_id',
-		'pasien_id',
-		'user_id',
+		'dokter.nama',
+		'pasien.nama',
+		'user.username',
 		'tanggal_periksa',
 		'terapi',
 	),
@@ -52,7 +52,7 @@ $this->menu=array(
 		'jumlah',
 		array(
 			'name'=>'harga',
-			'value'=>'$data->harga',
+			'value'=>'number_format($data->harga, 0, ".",",")',
 			'footer'=>'<b>total</b>'
 		),
 		array(
@@ -61,7 +61,7 @@ $this->menu=array(
             'class'     => 'TotalRow',
             'jumlah' => 'jumlah',
             'harga'  => 'harga',
-			'footer' => DetilResep::model()->getTotal($daftarObat),
+			'footer' => number_format(DetilResep::model()->getTotal($daftarObat),0,'.',','),
 		),
 		array(
 			'class'=>'CButtonColumn',

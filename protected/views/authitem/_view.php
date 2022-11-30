@@ -16,13 +16,6 @@
 	<?php echo CHtml::encode($data->description); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('bizrule')); ?>:</b>
-	<?php echo CHtml::encode($data->bizrule); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('data')); ?>:</b>
-	<?php echo CHtml::encode($data->data); ?>
-	<br />
 
 
 </div>

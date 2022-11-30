@@ -134,7 +134,10 @@ class RekamMedikController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('RekamMedik');
+		$criteria=new CDbCriteria;
+		$criteria->with=array('dokter','pasien','user');
+		$dataProvider = new CActiveDataProvider('RekamMedik',array('criteria'=>$criteria));
+
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -164,7 +167,8 @@ class RekamMedikController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=RekamMedik::model()->findByPk($id);
+		$model=RekamMedik::model()->with(array('dokter','pasien','user'))->findByPk($id);
+
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;

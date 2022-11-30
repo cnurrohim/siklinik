@@ -4,7 +4,6 @@
 ?>
 
 <div class="view">
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
 	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
 	<br />
@@ -18,15 +17,15 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('dokter_id')); ?>:</b>
-	<?php echo CHtml::encode($data->dokter_id); ?>
+	<?php echo CHtml::encode($data->dokter->nama); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('pasien_id')); ?>:</b>
-	<?php echo CHtml::encode($data->pasien_id); ?>
+	<?php echo CHtml::encode($data->pasien->nama); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('user_id')); ?>:</b>
-	<?php echo CHtml::encode($data->user_id); ?>
+	<?php echo CHtml::encode($data->user->username); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('tanggal_periksa')); ?>:</b>
